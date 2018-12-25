@@ -80,7 +80,7 @@ export default {
         {keyValue:/^5[1-5]/,name:'mastercard',maxlength: 22},
         {keyValue:/^36/,name:'Diners Club',maxlength: 16},
         {keyValue:/^3(4|7)/,name:'American Express',maxlength: 17},
-        {keyValue:/^6(011|4[4-9]+|5)/,name:'Discover',maxlength:19},
+        {keyValue:/^6(011|4[4-9]|5)/,name:'Discover',maxlength:19},
         {keyValue:/^60/,name:'Hipercard',maxlength: 22},
         {keyValue:/^62/,name:'银联',maxlength: 22},
       ],
@@ -107,18 +107,12 @@ export default {
       let self = this
       let value = event.target.value
       self.cardMsg.number = value
-      // 匹配银行卡类型 方法一：笨拙
-      // self.indexType = self.creditType.findIndex(function(item){
-      //   return item.keyValue.some((key)=>value.indexOf(key)==0)
-      // })
       self.indexType = self.creditType.findIndex(function(item){
-        // console.log(value.match(item.keyValue))
         return value.match(item.keyValue)
       })
       // 匹配银行卡类型 方法二：用正则
       self.cardMsg.bankName = self.indexType>-1 ? self.creditType[self.indexType].name:''
       self.maxLength = self.indexType>-1 ? self.creditType[self.indexType].maxlength: 19
-      // console.log(self.maxLength)
       // 在此已经知道了卡的类型，那么定义一个变量，让该变量根据maxlength的值，展示number，例如36:•••• •••••• ••••
       if(self.maxLength==16 || self.maxLength==17){
         self.cardNumber = value.replace(/\s/g,'').replace(/(\d{4})(?=\d)/,'$1 ').replace(/(\d{6})(?=\d)/,'$1 ')
@@ -175,249 +169,7 @@ export default {
   }
 }
 </script>
-<style lang="stylus">
-$backColor0 = linear-gradient(25deg, #0f509e, #1399cd) !important
-$backColor1 = linear-gradient(25deg, #f37b26, #fdb731) !important
-$backColor2 = linear-gradient(25deg, #fff, #eee) !important
-$backColor3 = linear-gradient(25deg, #308c67, #a3f2cf) !important
-$backColor4 = linear-gradient(25deg, #8b181b, #de1f27) !important
-$backColor5 = linear-gradient(25deg, #939393, #717171) !important
-@keyframes turnForward{
-  0%{
-    transform rotateY(-180deg)
-  }
-  100%{
-    transform rotateY(0deg)
-  }
-}
-@keyframes turnBack{
-  0%{
-    transform rotateY(0deg)
-  }
-  100%{
-    transform rotateY(-180deg)
-  }
-}
-@keyframes turnBack2{
-  0%{
-    transform rotateY(180deg)
-  }
-  100%{
-    transform rotateY(0deg)
-  }
-}
-@keyframes turnForward2{
-  0%{
-    transform rotateY(0deg)
-  }
-  100%{
-    transform rotateY(180deg)
-  }
-}
-@keyframes myfirst{
-  0%{
-    left -170%
-  }
-  100%{
-    left -30%
-  }
-}
-.mixfont{
-  font-size 17px !important
-}
-.fontColor
-  color #555 !important
-.bgColor0
-  background $backColor0
-  animation myfirst 0.5s
-.bgColor1
-  background $backColor1
-  animation myfirst 0.5s
-.bgColor2
-  background $backColor2
-  animation myfirst 0.5s
-.bgColor3
-  background $backColor3
-  animation myfirst 0.5s
-.bgColor4
-  background $backColor2
-  animation myfirst 0.5s
-.bgColor5
-  background $backColor4
-  animation myfirst 0.5s
-.bgColor6
-  background $backColor5
-  animation myfirst 0.5s
-.active
-  font-weight 700
-  opacity 1 !important
-.card-background
-  position relative 
-  height 200%
-  width 150%
-  top -60%
-  left -30%
-  transform rotate(25deg)
-.appPayment
-  padding 30px
-  .card-box 
-    width 290px
-    perspective 1000px
-    margin 0 auto
-  .card-container
-    width 290px
-    height 183px
-    margin 0 auto
-    position relative
-    transition all .4s linear 
-    .card
-      height 100%
-      width 100%
-      background linear-gradient(25deg, #999, #999)
-      border-radius 15px
-      position absolute
-      top 0
-      left 0
-      color #fff
-      overflow hidden
-      backface-visibility hidden
-    .card-forward
-      z-index 20
-      transform rotateY(0deg)
-      &.move-enter-active
-        animation turnForward .8s
-      &.movel-enter, &.move-leave-active
-        animation turnBack .8s
-      .card-chip
-        font-size 20px
-        left 10%
-        top 10%
-        width 36px
-        height 25px
-        background midnightblue
-      .card-number 
-        left 10%
-        top 45%
-        font-size 20px
-      .card-issuer
-        top 10%
-        right 10%
-        width 40%
-        height 23%
-        font-size 20px
-        text-align center
-      .card-name
-        font-size 17px 
-        left 10%
-        bottom 15%
-        width 60%
-        overflow hidden
-        text-overflow ellipsis
-        text-transform uppercase
-      .card-ecpiry 
-        right 10%
-        bottom 15%
-        font-size 10px
-      .alpha
-        font-family Consolas, Courier, monospace
-        opacity 0.5
-        position absolute
-        transition opacity 0.3s
-    .card-back
-      z-index 10
-      transform rotateY(0deg)
-      &.moveBack-enter-active,&.moveBack-leave
-        animation turnBack2 .8s
-      &.moveBack-leave-active,&.moveBack-enter 
-        animation turnForward2 .8s
-      .card-stripe
-        background-color #2a1d16
-        height 22%
-        left 0
-        position absolute
-        top 9%
-        width 100%
-      .card-signature
-        background repeating-linear-gradient(0.1deg, #fff 20%, #fff 40%, #fea 40%, #fea 44%, #fff 44%)
-        height 18%
-        left 5%
-        position absolute
-        top 35%
-        width 75%
-      .card-cvc
-        color #222
-        font-size 14px
-        left 67%
-        line-height 1
-        position absolute
-        top 42%
-      .card-issuer
-        position absolute
-        background-position bottom center
-        bottom 5%
-        left 50%
-        opacity 0.6
-        right auto
-        top auto
-        font-size 30px
-        width 60%
-        text-align center
-        -webkit-transform translateX(-50%)
-        transform translateX(-50%)
-  .form-style
-    margin 30px auto 0
-    max-width 400px
-    .form-group
-      margin-bottom 1rem
-    .form-control
-      width 100%
-      display block
-      font-size 1rem
-      line-height 1.25
-      color #495057
-      padding .5rem .75rem
-      border 1px solid rgba(0,0,0,.15)
-      border-radius .25rem
-      box-sizing: border-box;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-    .row
-      display flex
-      justify-content space-between
-      .col-6
-        flex 0 0 45%
-        max-width 50%
-    .form-actions
-      margin-top 15px
-      .btn
-        display inline-block
-        font-weight 400
-        text-align center
-        white-space nowrap
-        vertical-align middle
-        -webkit-user-select none
-        -moz-user-select none
-        -ms-user-select none
-        user-select none 
-        padding .5rem .75rem
-        font-size 1rem
-        line-height 1.25
-        border-radius .25rem
-        transition all .15s ease-in-out
-      .btn-primary
-        color #ffffff
-        background-color #007bff
-        border 1px solid #007bff
-        &:hover
-          background-color #0069d9
-          border-color #0069d9
-      .btn-block
-        display block
-        width 100%
-  .reslut-submit
-    padding-top 20px
-    max-width 300px
-    margin 0 auto
-    font-size 18px
+<style lang="stylus" scoped>
+@import "../assets/app.styl"
 </style>
 
