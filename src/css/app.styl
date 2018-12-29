@@ -1,0 +1,201 @@
+$back0 = linear-gradient(25deg, #0f509e, #1399cd)
+$back1 = linear-gradient(25deg, #f37b26, #fdb731)
+$back2 = linear-gradient(25deg, #fff, #eee)
+$back3 = linear-gradient(25deg, #308c67, #a3f2cf)
+$back4 = linear-gradient(25deg, #ccc, #999)
+.container
+  padding 30px
+.credit
+  width 290px
+  perspective 1000
+  margin 0 auto 
+.credit__card
+  width 100%
+  height 183px
+  margin 0 auto
+  position relative 
+  transition all .4s linear
+  color #fff
+  font-family Consolas, Courier, monospace
+.credit__card--front, .credit__card--back
+  height 100%
+  width 100%
+  position absolute
+  background linear-gradient(25deg, #939393, #717171)
+  border-radius 15px
+  top 0 
+  left 0
+  overflow hidden
+  transition z-index .7s
+  transform-style preserve-3d
+  box-shadow 0 0 20px rgba(0, 0, 0, 0.2)
+.credit__card--front
+  z-index 20
+.credit__card--back
+  z-index 10
+  transform rotateY(180deg)
+.credit__card--flipped
+  transform rotateY(180deg)
+  .credit__card--front
+    z-index 10
+  .credit__card--back
+    z-index 20
+.credit__card__background
+  position relative
+  height 200%
+  width 150%
+  top -60%
+  left -170%
+  transform rotate(25deg)
+  transition all .5s ease-out
+.credit__card__chip
+  position absolute
+  left 10%
+  top 10%
+  width 36px
+  height 25px
+  background midnightblue 
+.credit__card__number
+  left 10%
+  top 45%
+  font-size 20px
+  position absolute 
+.credit__number--large
+  font-size 17px
+.credit__card__issuer
+  position absolute  
+  top 10%
+  right 10%
+  width 45%
+  height 23%
+  font-size 20px
+  text-align center 
+.credit__card__name
+  position absolute 
+  font-size 17px
+  left 10%
+  bottom 15%
+  overflow hidden
+  text-overflow ellipsis 
+  text-transform uppercase
+.credit__card__expiry
+  position absolute 
+  right 10%
+  bottom 15%
+.credit__card__expiry, .credit__card__number, .credit__card__name, .credit__card__cvc 
+  opacity 0.5
+  transition opacity 0.3s
+.credit__card--focus
+  opacity 1 !important
+  font-weight 700
+.credit__card__stripe
+  background-color #2a1d16
+  position absolute
+  height 22%
+  left 0
+  top 9%
+  width 100%
+.credit__card__signature
+  background repeating-linear-gradient(0.1deg, #fff 20%, #fff 40%, #fea 40%, #fea 44%, #fff 44%)
+  position absolute 
+  top 35%
+  left 5%
+  width 75%
+  height 18%
+.credit__card__cvc  
+  color #222
+  font-family Consolas, Courier, monospace
+  font-size 14px
+  left 67%
+  line-height 1
+  position absolute
+  top 42%
+.credit__card--back .credit__card__issuer
+  position absolute
+  background-position bottom center
+  bottom 5%
+  left 50%
+  opacity 0.6
+  right auto
+  top auto
+  font-size 20px
+  width 60%
+  text-align center
+  transform translateX(-50%)
+.credit__card--visa 
+  .credit__card__background
+    background $back0
+.credit__card--amex
+  .credit__card__background
+    background $back3
+.credit__card--mastercard
+  .credit__card__background
+    background $back1
+.credit__card--dinersclub
+  color #555
+  .credit__card__background
+    background $back2
+.credit__card--discover
+  .credit__card__background
+    background $back2
+.credit__card--laser
+  .credit__card__background
+    background $back1
+.credit__card--dankort
+  .credit__card__background
+    background $back4
+.credit__card:not(.credit__card--unknown) .credit__card__background 
+  left -22%
+.credit__card--unknown > div 
+    background linear-gradient(25deg, #999, #999)
+    box-shadow none
+.formStyle
+  margin 30px auto 0
+  max-width 400px
+.form-group
+  margin-bottom 1rem
+.form-control
+  width 100%
+  display block
+  font-size 1rem
+  line-height 1.25
+  color #495057
+  padding .5rem .75rem
+  border-radius .25rem
+  box-sizing border-box
+  border 1px solid rgba(0,0,0,.15)
+  &:focus
+    color #495057
+    background-color #fff
+    border-color #80bdff
+    outline 0
+.row
+  display flex
+  justify-content space-between
+.col-6
+  flex 0 0 45%
+  mac-width 50%
+.form-actions
+  margin-top 15px
+.btn
+  display inline-block
+  font-weight 400
+  text-align center 
+  white-space nowrap 
+  vertical-align middle
+  user-select none 
+  padding .5rem .75rem
+  font-size 1rem
+  line-height 1.25
+  border-radius .25rem
+  transition all .15s ease-in-out
+.btn-primary
+  color #ffffff
+  background-color #007bff
+  border 1px solid #007bff
+  &:hover
+    background-color #0069d9
+    border-color #0069d9
+.btn-block
+  display block
+  width 100%
