@@ -25,5 +25,7 @@ npm run test
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# 项目介绍
+```
+银行卡识别。根据输入的银行卡号识别出银行卡类型，更改银行卡的样式，使用transition实现过渡效果。
+```
