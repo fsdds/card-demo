@@ -1,5 +1,4 @@
-# card-demo2
-
+# 银行卡识别
 ## Project setup
 ```
 npm install
